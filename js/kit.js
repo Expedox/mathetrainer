@@ -81,3 +81,9 @@ export const rad = (d) => (d * Math.PI) / 180;
 export const randPoly = (deg) => [nz(-5, 6), ...Array.from({ length: deg }, () => ri(-9, 9))];
 export const derive = (c) => c.slice(0, -1).map((x, i) => x * (c.length - 1 - i));
 export const binom = (n, k) => { let r = 1; for (let i = 1; i <= k; i++) r = (r * (n - k + i)) / i; return r; };
+
+// Empty answer box inside a task text. Keeps "▢" as invisible text so speech and plain-text reports still work.
+const BOX = 'display:inline-block;box-sizing:border-box;border:3px solid var(--accent);border-radius:7px;overflow:hidden;text-indent:-9em;white-space:nowrap;';
+export const gap = () => `<span style="${BOX}width:1.15em;height:1.15em;vertical-align:-.2em">▢</span>`;
+export const gapSup = () => `<span style="${BOX}width:.7em;height:.7em;border-width:2px;border-radius:4px;vertical-align:.6em;margin:0 .05em 0 .1em">▢</span>`;
+export const ask = (title, what) => `<span style="display:block;font-size:.55em;font-weight:700;line-height:1.3;margin-bottom:.3em">${title}${what}</span>`;

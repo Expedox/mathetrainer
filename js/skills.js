@@ -8,7 +8,7 @@ import { byNeed } from './srs.js';
 import moreVs from './curriculum/vs.js';
 import moreUs from './curriculum/us.js';
 import moreOs from './curriculum/os.js';
-import { M, num, T, traps, N, digits, noBorrow, noCarry, columnAdd, columnSub, columnDiv, fracTask, FT, exprTask, ET, TRIPLES, deg, rad, randPoly, derive, binom } from './kit.js';
+import { M, num, T, traps, N, digits, noBorrow, noCarry, columnAdd, columnSub, columnDiv, fracTask, FT, exprTask, ET, TRIPLES, deg, rad, randPoly, derive, binom, gapSup, ask } from './kit.js';
 
 
 const S = {};
@@ -493,7 +493,7 @@ S.sci = { name: 'Gleitkommadarstellung', gen() {
   const m = ri(11, 99) / 10; const e = pick([-6, -5, -4, -3, 3, 4, 5, 6, 7]);
   const n = m * 10 ** e;
   const s = e < 0 ? n.toFixed(-e + 1).replace('.', ',') : fmt(Math.round(n));
-  return N(num(`Welche Hochzahl gehört ins Kästchen?<br>${s} = ${fmt(m)} · 10<sup><span style="display:inline-block;min-width:.9em;height:.9em;border:2px solid currentColor;border-radius:4px;background:color-mix(in srgb, var(--accent) 25%, transparent);color:transparent;vertical-align:-.1em">▢</span></sup>`, e, { steps: [`Das Komma wandert von ${fmt(m)} aus um ${Math.abs(e)} Stellen nach ${e < 0 ? 'links' : 'rechts'}.`, `Hochzahl: ${fmt(e)}`], traps: [T(-e, e < 0 ? 'Kleine Zahlen (unter 1) haben eine negative Hochzahl.' : 'Große Zahlen haben eine positive Hochzahl.'), T(e < 0 ? e + 1 : e + 1, 'Um eine Stelle verzählt: Zähle, wie oft das Komma springt.')] }));
+  return N(num(`${ask('', 'Welche Hochzahl fehlt?')}${s} = ${fmt(m)} · <span style="white-space:nowrap">10${gapSup()}</span>`, e, { steps: [`Das Komma wandert von ${fmt(m)} aus um ${Math.abs(e)} Stellen nach ${e < 0 ? 'links' : 'rechts'}.`, `Hochzahl: ${fmt(e)}`], traps: [T(-e, e < 0 ? 'Kleine Zahlen (unter 1) haben eine negative Hochzahl.' : 'Große Zahlen haben eine positive Hochzahl.'), T(e < 0 ? e + 1 : e + 1, 'Um eine Stelle verzählt: Zähle, wie oft das Komma springt.')] }));
 } };
 
 S.trig = { name: 'Trigonometrie im rechtwinkligen Dreieck', gen() {
