@@ -12,14 +12,3 @@ Läuft im Browser, lässt sich über „Zum Home-Bildschirm“ wie eine App inst
 - `js/` – übriger App-Code ohne Build-Schritt (wie beim Vokabeltrainer)
 - `sw.js` – Offline-Cache; bei jeder Veröffentlichung `VERSION` erhöhen
 
-## Lokal ausprobieren
-
-Doppelklick auf `index.html` reicht nicht (Browser laden JavaScript-Module nicht von `file://`). Im Ordner einen kleinen Server starten:
-
-    python -m http.server 8000
-
-und http://localhost:8000 öffnen.
-
-## Veröffentlichen
-
-Den ganzen Ordner auf einen Webserver legen (z. B. GitHub Pages). Bei jeder neuen Version in `sw.js` die `VERSION` erhöhen.
