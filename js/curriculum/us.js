@@ -233,10 +233,10 @@ export default {
           n = ps.reduce((s, p, i) => s * p ** es[i], 1);
         } while (n > 1000 || n < 30);
         const h = ps[hide]; const pw = (i) => `${ps[i]}${es[i] > 1 ? sup(es[i]) : ''}`;
-        const shown = ps.map((p, i) => (i === hide ? '▢' : pw(i))).join(' · ');
+        const shown = ps.map((p, i) => (i === hide ? `<span style="display:inline-block;min-width:1.2em;height:1em;border:2px solid currentColor;border-radius:6px;background:color-mix(in srgb, var(--accent) 25%, transparent);color:transparent;vertical-align:-.15em">▢</span>` : pw(i))).join(' · ');
         const K = n / h; const plain = ps.reduce((s, p, i) => (i === hide ? s : s * p), 1);
         const known = ps.map((p, i) => (i === hide ? null : es[i] > 1 ? `${pw(i)} = ${p ** es[i]}` : `${p}`)).filter(Boolean).join(', ');
-        return N(num(`Primfaktorzerlegung: ${n} = ${shown}`, h, { steps: [`Bekannte Faktoren: ${known}, zusammen ${K}`, `${n} : ${K} = ${h}`, `${h} ist eine Primzahl. Probe: ${ps.map((p, i) => pw(i)).join(' · ')} = ${n}`],
+        return N(num(`Primfaktorzerlegung. Welche Primzahl gehört ins Kästchen?<br>${n} = ${shown}`, h, { steps: [`Bekannte Faktoren: ${known}, zusammen ${K}`, `${n} : ${K} = ${h}`, `${h} ist eine Primzahl. Probe: ${ps.map((p, i) => pw(i)).join(' · ')} = ${n}`],
           traps: [plain !== K && T(n / plain, `Die Hochzahl zählt mit: ${ps.map((p, i) => (i !== hide && es[i] > 1 ? `${pw(i)} = ${p ** es[i]}` : null)).filter(Boolean).join(', ')}. Teile also durch ${K}.`)] }));
       }
       let n; let p; let e; let rest;
