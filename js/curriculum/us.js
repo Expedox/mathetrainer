@@ -242,7 +242,7 @@ export default {
       let n; let p; let e; let rest;
       do { p = pick([2, 2, 3]); e = ri(2, p === 2 ? 5 : 3); rest = pick(p === 2 ? [3, 5, 7, 15, 21, 9, 35] : [2, 5, 7, 10, 14]); n = p ** e * rest; } while (n > 1000);
       const restTxt = { 15: '3 · 5', 21: '3 · 7', 9: '3²', 35: '5 · 7', 10: '2 · 5', 14: '2 · 7' }[rest] ?? String(rest);
-      return N(num(`Primfaktorzerlegung: ${n} = ${p}<sup>▢</sup> · ${restTxt}`, e, { steps: [`${n} : ${rest} = ${p ** e}`, `${p ** e} = ${Array(e).fill(p).join(' · ')}, also ${e}-mal die ${p}`, `${n} = ${p}${sup(e)} · ${restTxt}`],
+      return N(num(`Primfaktorzerlegung. Welche Hochzahl gehört ins Kästchen?<br>${n} = ${p}<sup><span style="display:inline-block;min-width:.9em;height:.9em;border:2px solid currentColor;border-radius:4px;background:color-mix(in srgb, var(--accent) 25%, transparent);color:transparent;vertical-align:-.1em">▢</span></sup> · ${restTxt}`, e, { steps: [`${n} : ${rest} = ${p ** e}`, `${p ** e} = ${Array(e).fill(p).join(' · ')}, also ${e}-mal die ${p}`, `${n} = ${p}${sup(e)} · ${restTxt}`],
         traps: [T(p ** e, `Gefragt ist die Hochzahl, also wie oft ${p} vorkommt. ${p ** e} = ${p}${sup(e)}.`), T(e - 1, `Um eins verzählt: ${p ** e} = ${Array(e).fill(p).join(' · ')}.`)] }));
     } },
 
